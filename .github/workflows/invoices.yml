@@ -1,0 +1,21 @@
+name: Invoices
+# This workflow is triggered on pushes to the repository.
+on: 
+  schedule:
+    # At 9am UTC of the 1st day of every month
+    - cron: 0 9 1 * *
+
+jobs:
+  build:
+    name: Execute Invoices
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+
+    - name: Execute Invoices
+      run: |
+        cd invoices
+        bash main.sh
+
